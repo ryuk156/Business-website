@@ -4,7 +4,9 @@ import { useCart } from '../context/useCart';
 import Button from '../components/Button';
 
 function Cart() {
-  const { items, monthlyTotal, oneTimeTotal, removeItem, updateQuantity, clearCart } = useCart();
+  const { items, monthlyTotal, monthlyDiscount, oneTimeTotal, removeItem, updateQuantity, clearCart } = useCart();
+  const firstMonthTotal = Math.max(0, monthlyTotal - monthlyDiscount);
+  const comboApplied = monthlyDiscount > 0;
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -73,12 +75,22 @@ function Cart() {
                   </div>
                 </article>
               ))}
+              {comboApplied && (
+                <div className="rounded-xl border border-primary-200 bg-primary-50 p-4">
+                  <p className="font-semibold text-primary-900">Combo offer applied</p>
+                  <p className="mt-1 text-sm leading-relaxed text-primary-800">
+                    Your $399 laptop qualifies for one free month of the Starter Website plan.
+                  </p>
+                </div>
+              )}
             </section>
 
             <aside className="card h-fit p-5 sm:p-6">
               <h2 className="text-lg font-semibold text-neutral-900">Order summary</h2>
               <div className="mt-5 space-y-3 text-sm">
                 {monthlyTotal > 0 && <div className="flex justify-between gap-4"><span className="text-neutral-600">Monthly subscriptions</span><span className="font-medium">${monthlyTotal.toFixed(2)}/mo</span></div>}
+                {comboApplied && <div className="flex justify-between gap-4 text-primary-700"><span>First month combo discount</span><span className="font-medium">-${monthlyDiscount.toFixed(2)}</span></div>}
+                {comboApplied && <div className="flex justify-between gap-4 font-semibold text-neutral-900"><span>First month due</span><span>${firstMonthTotal.toFixed(2)}</span></div>}
                 {oneTimeTotal > 0 && <div className="flex justify-between gap-4"><span className="text-neutral-600">Laptop total</span><span className="font-medium">${oneTimeTotal.toFixed(2)}</span></div>}
               </div>
               <div className="my-5 border-t border-neutral-200" />

@@ -31,6 +31,7 @@ function LaptopDetail() {
 
   const savings = laptop.originalPrice - laptop.price;
   const savingsPercent = Math.round((savings / laptop.originalPrice) * 100);
+  const includesWebsiteOffer = laptop.price === 399.99;
 
   const categoryLabels = {
     essential: 'Essential',
@@ -115,6 +116,14 @@ function LaptopDetail() {
                     </>
                   )}
                 </div>
+                {includesWebsiteOffer && (
+                  <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
+                    <p className="font-semibold text-amber-900">Special combo offer</p>
+                    <p className="mt-1 text-sm leading-relaxed text-amber-800">
+                      Add the Starter Website plan to your cart and get your first month free.
+                    </p>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-2 gap-4 mb-8 p-4 bg-neutral-50 rounded-xl">
                   <div>

@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { CartContext } from './cartContext';
 
 const CART_STORAGE_KEY = 'web-mechanix-cart';
+const COMBO_LAPTOP_PRICE = 399.99;
+const STARTER_PLAN_ID = 'starter';
 
 function normalizeItem(item) {
   return {
@@ -73,6 +75,11 @@ export function CartProvider({ children }) {
     monthlyTotal: items
       .filter((item) => item.type === 'subscription')
       .reduce((total, item) => total + item.price * item.quantity, 0),
+    monthlyDiscount: items.some((item) => item.type === 'product' && item.price === COMBO_LAPTOP_PRICE)
+      ? items
+        .filter((item) => item.type === 'subscription' && item.id === STARTER_PLAN_ID)
+        .reduce((total, item) => total + item.price, 0)
+      : 0,
     oneTimeTotal: items
       .filter((item) => item.type === 'product')
       .reduce((total, item) => total + item.price * item.quantity, 0),

@@ -7,6 +7,7 @@ function LaptopCard({ laptop }) {
   const { addItem } = useCart();
   const savings = laptop.originalPrice - laptop.price;
   const savingsPercent = Math.round((savings / laptop.originalPrice) * 100);
+  const includesWebsiteOffer = laptop.price === 399.99;
 
   const categoryLabels = {
     essential: 'Essential',
@@ -58,6 +59,11 @@ function LaptopCard({ laptop }) {
         {savings > 0 && (
           <div className="absolute bottom-3 left-3 bg-primary-600 text-white px-2 py-1 rounded text-sm font-medium">
             Save {savingsPercent}% (${savings.toFixed(2)})
+          </div>
+        )}
+        {includesWebsiteOffer && (
+          <div className="absolute bottom-3 right-3 rounded bg-amber-400 px-2 py-1 text-xs font-bold text-amber-950 shadow-sm">
+            1 month website free
           </div>
         )}
       </div>
