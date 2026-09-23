@@ -1,11 +1,24 @@
-import { Quote } from 'lucide-react';
 import { lucideIcons } from '../utils/icons';
 
-function TestimonialCard({ testimonial }) {
+interface Testimonial {
+  quote: string;
+  initials: string;
+  author: string;
+  business: string;
+  source: string;
+}
+
+interface TestimonialCardProps {
+  testimonial: Testimonial;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function TestimonialCard({ testimonial, className = '', style }: TestimonialCardProps) {
   const QuoteIcon = lucideIcons.Quote;
 
   return (
-    <article className="card p-6 sm:p-8 relative">
+    <article className={`card p-6 sm:p-8 relative ${className}`} style={style}>
       <QuoteIcon className="w-10 h-10 text-primary-100 mb-4" aria-hidden="true" />
       <blockquote className="text-neutral-700 leading-relaxed mb-6 text-lg">
         &ldquo;{testimonial.quote}&rdquo;

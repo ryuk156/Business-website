@@ -1,10 +1,27 @@
-import { Check, ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import { lucideIcons } from '../utils/icons';
 import Button from './Button';
 import { useCart } from '../context/useCart';
 
-function PricingCard({ plan, className = '' }) {
+interface PricingPlan {
+  id: string;
+  name: string;
+  price: number;
+  period: string;
+  description: string;
+  features: string[];
+  recommendedFor?: string[];
+  popular?: boolean;
+}
+
+interface PricingCardProps {
+  plan: PricingPlan;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function PricingCard({ plan, className = '', style }: PricingCardProps) {
   const CheckIcon = lucideIcons.Check;
   const { addItem } = useCart();
   const [cartMessage, setCartMessage] = useState('');
@@ -15,7 +32,7 @@ function PricingCard({ plan, className = '' }) {
   };
 
   return (
-    <article className={`relative card overflow-visible flex flex-col ${plan.popular ? 'ring-2 ring-primary-500 shadow-lg' : ''} ${className}`}>
+    <article className={`relative card overflow-visible flex flex-col ${plan.popular ? 'ring-2 ring-primary-500 shadow-lg' : ''} ${className}`} style={style}>
       {plan.popular && (
         <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2">
           <span className="badge badge-popular">Most Popular</span>

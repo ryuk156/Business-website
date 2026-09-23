@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { lucideIcons } from '../utils/icons';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 
 const serviceOptions = [
   { value: 'starter', label: 'Starter Website — $35/month' },
@@ -10,8 +9,24 @@ const serviceOptions = [
   { value: 'other', label: 'Other' },
 ];
 
-function ContactForm({ onSubmit, initialData = {} }) {
-  const [formData, setFormData] = useState({
+type ContactFormValues = {
+  name: string;
+  businessName: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+};
+
+type FormErrors = Partial<Record<keyof ContactFormValues, string>>;
+
+interface ContactFormProps {
+  onSubmit: (formData: ContactFormValues) => Promise<void> | void;
+  initialData?: Partial<ContactFormValues>;
+}
+
+function ContactForm({ onSubmit, initialData = {} }: ContactFormProps) {
+  const [formData, setFormData] = useState<ContactFormValues>({
     name: '',
     businessName: '',
     email: '',
@@ -20,12 +35,12 @@ function ContactForm({ onSubmit, initialData = {} }) {
     message: '',
     ...initialData,
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
 
   const validate = () => {
-    const newErrors = {};
+    const newErrors: FormErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.businessName.trim()) newErrors.businessName = 'Business name is required';
     if (!formData.email.trim()) newErrors.email = 'Email is required';
@@ -37,13 +52,14 @@ function ContactForm({ onSubmit, initialData = {} }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+    const fieldName = name as keyof ContactFormValues;
+    setFormData((prev) => ({ ...prev, [fieldName]: value }));
+    if (errors[fieldName]) setErrors((prev) => ({ ...prev, [fieldName]: '' }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate()) return;
 
@@ -54,13 +70,12 @@ function ContactForm({ onSubmit, initialData = {} }) {
       await onSubmit(formData);
       setSubmitStatus('success');
       setFormData({ name: '', businessName: '', email: '', phone: '', service: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

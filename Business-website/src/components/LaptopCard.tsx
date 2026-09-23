@@ -2,7 +2,28 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/useCart';
 
-function LaptopCard({ laptop }) {
+interface LaptopCardItem {
+  id: number;
+  brand: string;
+  model: string;
+  cpu: string;
+  ram: string;
+  storage: string;
+  screen: string;
+  condition: string;
+  category: 'essential' | 'business' | 'professional' | string;
+  price: number;
+  originalPrice: number;
+  image: string;
+}
+
+interface LaptopCardProps {
+  laptop: LaptopCardItem;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function LaptopCard({ laptop, className = '', style }: LaptopCardProps) {
   const navigate = useNavigate();
   const { addItem } = useCart();
   const savings = laptop.originalPrice - laptop.price;
@@ -29,7 +50,8 @@ function LaptopCard({ laptop }) {
 
   return (
     <article
-      className="card group flex cursor-pointer flex-col overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+      className={`card group flex cursor-pointer flex-col overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${className}`}
+      style={style}
       role="link"
       tabIndex={0}
       onClick={() => navigate(`/laptops/${laptop.id}`)}

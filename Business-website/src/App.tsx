@@ -18,6 +18,8 @@ import GetStarted from './pages/GetStarted';
 import Cart from './pages/Cart';
 import { CartProvider } from './context/CartContext';
 import CheckoutInfo from './pages/CheckoutInfo';
+import Checkout from './pages/Checkout';
+import CheckoutSuccess from './pages/CheckoutSuccess';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
               <Route path="/get-started" element={<GetStarted />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout-info" element={<CheckoutInfo />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
             </Routes>
           </main>
           <Footer />

@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { lucideIcons } from '../utils/icons';
 
-function FAQAccordion({ faqs }) {
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FAQAccordionProps {
+  faqs: FAQItem[];
+}
+
+function FAQAccordion({ faqs }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState(0);
   const ChevronDownIcon = lucideIcons.ChevronDown;
 
@@ -13,7 +21,7 @@ function FAQAccordion({ faqs }) {
           <details
             key={index}
             className="group card overflow-hidden"
-            defaultOpen={index === 0}
+            open={openIndex === index}
           >
             <summary
               className="flex items-center justify-between p-6 cursor-pointer list-none focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"

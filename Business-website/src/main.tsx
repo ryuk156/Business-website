@@ -1,16 +1,20 @@
-import { Component, StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { Component, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
 
-class AppErrorBoundary extends Component {
-  state = { error: null }
+interface ErrorBoundaryState {
+  error: Error | null;
+}
 
-  static getDerivedStateFromError(error) {
-    return { error }
+class AppErrorBoundary extends Component<Record<string, unknown>, ErrorBoundaryState> {
+  state: ErrorBoundaryState = { error: null };
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { error };
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.error) {
       return (
         <main className="min-h-screen flex items-center justify-center bg-neutral-50 px-6">
@@ -22,17 +26,23 @@ class AppErrorBoundary extends Component {
             </pre>
           </div>
         </main>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children as React.ReactNode;
   }
 }
 
-createRoot(document.getElementById('root')).render(
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Root element not found');
+}
+
+createRoot(rootElement).render(
   <StrictMode>
     <AppErrorBoundary>
       <App />
     </AppErrorBoundary>
   </StrictMode>,
-)
+);

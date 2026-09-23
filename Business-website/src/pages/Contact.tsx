@@ -4,17 +4,22 @@ import { siteConfig } from '../config/site';
 import Navbar from '../components/Navbar';
 import ContactForm from '../components/ContactForm';
 import { submitFormByEmail } from '../utils/email';
+import { saveContactRequest } from '../utils/backend';
 
 function Contact() {
   const handleSubmit = async (data) => {
-    await submitFormByEmail('New Web Mechanix contact request', {
-      Name: data.name,
-      'Business name': data.businessName,
-      Email: data.email,
-      Phone: data.phone,
-      Service: data.service,
-      Message: data.message,
-    });
+    try {
+      await saveContactRequest(data);
+    } catch (error) {
+      await submitFormByEmail('New Web Mechanix contact request', {
+        Name: data.name,
+        'Business name': data.businessName,
+        Email: data.email,
+        Phone: data.phone,
+        Service: data.service,
+        Message: data.message,
+      });
+    }
   };
 
   return (

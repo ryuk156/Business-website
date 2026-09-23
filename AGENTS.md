@@ -29,6 +29,8 @@ npm run lint
 npm run build
 ```
 
+For TypeScript validation, also run `npm run type-check`.
+
 `npm run build` is only a verification step. It is not needed to run the site locally.
 
 ## Important Runtime Fixes
@@ -45,6 +47,24 @@ npm run build
 - Prefer the existing `lucide-react` and `react-router-dom` dependencies.
 - Avoid unrelated refactors when fixing runtime errors.
 - Do not commit generated `dist/` output unless explicitly requested.
+
+## Supabase and Stripe
+
+- Run `Business-website/supabase/schema.sql` in the Supabase Dashboard SQL Editor before testing checkout.
+- The frontend uses `.env.local` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+- Stripe checkout is created by `supabase/functions/create-checkout-session/index.ts`; the Stripe secret key must remain a Supabase function secret and must never be placed in `.env.local` or frontend code.
+- Use the Supabase CLI through `npx supabase` from the nested application directory. Authenticate and link the project before deploying:
+
+```bash
+npx supabase login
+npx supabase link --project-ref <project-ref>
+npx supabase functions deploy create-checkout-session
+```
+
+- Required function secrets are `STRIPE_SECRET_KEY`, `SITE_URL`, and `STRIPE_PRICE_STARTER`. Add other `STRIPE_PRICE_*` values only when those plans are enabled.
+- `STRIPE_SECRET_KEY` must be an `sk_test_...` or `sk_live_...` key. `pk_*` keys are publishable keys and cannot create Checkout Sessions.
+- Use real Stripe Price IDs beginning with `price_`, not numeric placeholders.
+- If a Stripe key is exposed, revoke it in Stripe immediately and create a replacement.
 
 ## Debugging a Blank Page
 

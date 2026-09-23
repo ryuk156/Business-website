@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar';
 import Button from '../components/Button';
 import ContactForm from '../components/ContactForm';
 import { submitFormByEmail } from '../utils/email';
+import { saveWebsiteRequest } from '../utils/backend';
 
 function GetStarted() {
   const [searchParams] = useSearchParams();
@@ -57,17 +58,24 @@ function GetStarted() {
     setSubmitStatus(null);
 
     try {
-      await submitFormByEmail('New Web Mechanix website request', {
-        Plan: selectedPlan?.name || formData.selectedPlan,
-        'Business name': formData.businessName,
-        'Contact name': formData.contactName,
-        Email: formData.email,
-        Phone: formData.phone,
-        'Business type': formData.businessType,
-        'Existing website': formData.hasWebsite,
-        Domain: formData.hasDomain,
-        'Additional information': formData.additionalInfo,
-      });
+      try {
+        await saveWebsiteRequest({
+          plan: selectedPlan?.name || formData.selectedPlan,
+          ...formData,
+        });
+      } catch (error) {
+        await submitFormByEmail('New Web Mechanix website request', {
+          Plan: selectedPlan?.name || formData.selectedPlan,
+          'Business name': formData.businessName,
+          'Contact name': formData.contactName,
+          Email: formData.email,
+          Phone: formData.phone,
+          'Business type': formData.businessType,
+          'Existing website': formData.hasWebsite,
+          Domain: formData.hasDomain,
+          'Additional information': formData.additionalInfo,
+        });
+      }
       setSubmitStatus('success');
       setFormData({
         businessName: '',
