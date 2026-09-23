@@ -1,4 +1,5 @@
 import { Check, ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
 import { lucideIcons } from '../utils/icons';
 import Button from './Button';
 import { useCart } from '../context/useCart';
@@ -6,6 +7,12 @@ import { useCart } from '../context/useCart';
 function PricingCard({ plan, className = '' }) {
   const CheckIcon = lucideIcons.Check;
   const { addItem } = useCart();
+  const [cartMessage, setCartMessage] = useState('');
+
+  const handleAddToCart = () => {
+    const added = addItem({ id: plan.id, type: 'subscription', name: plan.name, price: plan.price, period: plan.period });
+    setCartMessage(added ? `${plan.name} added to your cart.` : 'Your cart already has a website plan. Remove it before choosing another.');
+  };
 
   return (
     <article className={`relative card overflow-visible flex flex-col ${plan.popular ? 'ring-2 ring-primary-500 shadow-lg' : ''} ${className}`}>
@@ -41,11 +48,12 @@ function PricingCard({ plan, className = '' }) {
           variant={plan.popular ? 'primary' : 'outline'}
           size="lg"
           className="w-full"
-          onClick={() => addItem({ id: plan.id, type: 'subscription', name: plan.name, price: plan.price, period: plan.period })}
+          onClick={handleAddToCart}
         >
           <ShoppingCart className="mr-2 h-5 w-5" aria-hidden="true" />
           Add Plan to Cart
         </Button>
+        {cartMessage && <p className="mt-2 text-center text-xs text-neutral-500" role="status">{cartMessage}</p>}
       </div>
 
       {plan.recommendedFor && (

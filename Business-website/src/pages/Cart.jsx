@@ -95,11 +95,20 @@ function Cart() {
               </div>
               <div className="my-5 border-t border-neutral-200" />
               <p className="text-sm leading-relaxed text-neutral-500">Secure checkout and payment options will be available through Stripe.</p>
-              <Button className="mt-5 w-full" disabled>
-                Continue to Checkout
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </Button>
-              <p className="mt-3 text-center text-xs text-neutral-500">Checkout integration coming soon</p>
+              {items.some((item) => item.type === 'subscription') ? (
+                <Link to="/checkout-info" className="mt-5 block">
+                  <Button className="w-full">
+                    Continue to Project Details
+                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  </Button>
+                </Link>
+              ) : (
+                <Button className="mt-5 w-full" disabled>
+                  Continue to Checkout
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Button>
+              )}
+              <p className="mt-3 text-center text-xs text-neutral-500">We’ll collect your project details before payment.</p>
             </aside>
           </div>
         )}

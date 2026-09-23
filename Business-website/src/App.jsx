@@ -17,6 +17,7 @@ import Privacy from './pages/Privacy';
 import GetStarted from './pages/GetStarted';
 import Cart from './pages/Cart';
 import { CartProvider } from './context/CartContext';
+import CheckoutInfo from './pages/CheckoutInfo';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
               <Route path="/get-started" element={<GetStarted />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout-info" element={<CheckoutInfo />} />
             </Routes>
           </main>
           <Footer />

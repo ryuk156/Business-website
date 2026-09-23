@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { CartContext } from './cartContext';
 
 const CART_STORAGE_KEY = 'web-mechanix-cart';
@@ -20,7 +20,15 @@ function normalizeItem(item) {
 function loadCart() {
   try {
     const storedCart = window.localStorage.getItem(CART_STORAGE_KEY);
-    return storedCart ? JSON.parse(storedCart).map(normalizeItem) : [];
+    const items = storedCart ? JSON.parse(storedCart).map(normalizeItem) : [];
+    let subscriptionAdded = false;
+
+    return items.filter((item) => {
+      if (item.type !== 'subscription') return true;
+      if (subscriptionAdded) return false;
+      subscriptionAdded = true;
+      return true;
+    });
   } catch {
     return [];
   }
@@ -33,8 +41,13 @@ export function CartProvider({ children }) {
     window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
-  const addItem = (item) => {
+  const addItem = useCallback((item) => {
     const normalizedItem = normalizeItem(item);
+    const hasDifferentSubscription = normalizedItem.type === 'subscription'
+      && items.some((currentItem) => currentItem.type === 'subscription' && currentItem.id !== normalizedItem.id);
+
+    if (hasDifferentSubscription) return false;
+
     setItems((currentItems) => {
       const existingItem = currentItems.find(
         (currentItem) => currentItem.id === normalizedItem.id && currentItem.type === normalizedItem.type,
@@ -50,7 +63,8 @@ export function CartProvider({ children }) {
 
       return [...currentItems, normalizedItem];
     });
-  };
+    return true;
+  }, [items]);
 
   const removeItem = (id, type) => {
     setItems((currentItems) => currentItems.filter((item) => item.id !== String(id) || item.type !== type));
@@ -87,7 +101,7 @@ export function CartProvider({ children }) {
     removeItem,
     updateQuantity,
     clearCart,
-  }), [items]);
+  }), [items, addItem]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
