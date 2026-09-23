@@ -14,6 +14,7 @@ import {
   Zap,
   Shield,
   ArrowRight,
+  Check,
   CheckCircle,
   ChevronDown,
   Menu,
@@ -42,6 +43,8 @@ import {
   Info,
   AlertCircle,
   HelpCircle,
+  Quote,
+  Clock,
   ChevronUp,
   ChevronDown as ChevronDownIcon,
 } from 'lucide-react';
@@ -62,8 +65,9 @@ export const lucideIcons = {
   Zap,
   Shield,
   ArrowRight,
+  Check,
   CheckCircle,
-  ChevronDown,
+  ChevronDown: ChevronDownIcon,
   Menu,
   X,
   Mail,
@@ -90,8 +94,9 @@ export const lucideIcons = {
   Info,
   AlertCircle,
   HelpCircle,
+  Quote,
+  Clock,
   ChevronUp,
-  ChevronDown: ChevronDownIcon,
 };
 
 export function getIcon(name) {

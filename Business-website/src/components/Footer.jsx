@@ -46,7 +46,7 @@ function Footer() {
           </nav>
 
           <nav aria-label="Business laptop services">
-            <h3 className="text-white font-semibold mb-4">Business Laptops</h3>
+            <h3 className="text-white font-semibold mb-4">Refurbished Laptops</h3>
             <ul className="space-y-3">
               {siteConfig.footer.laptops.map((item) => (
                 <li key={item.href}>

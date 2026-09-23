@@ -14,20 +14,6 @@ function About() {
     { icon: Users, title: 'Long-term Partnership', description: 'We\'re not just a vendor. We\'re your technology partner as you grow.' },
   ];
 
-  const team = [
-    { name: 'Founder & CEO', role: 'Leads vision and customer relationships' },
-    { name: 'Lead Developer', role: 'Builds and maintains all websites' },
-    { name: 'Hardware Specialist', role: 'Tests and certifies every laptop' },
-    { name: 'Support Lead', role: 'Ensures ongoing customer success' },
-  ];
-
-  const milestones = [
-    { year: '2024', title: 'Company Founded', description: 'Started with a mission to make technology affordable for small businesses.' },
-    { year: '2024', title: 'First 50 Websites', description: 'Launched professional websites for local service businesses across Canada.' },
-    { year: '2024', title: 'Laptop Program Launched', description: 'Added refurbished business laptops to help businesses equip their teams affordably.' },
-    { year: '2025', title: 'Appointment & E-Commerce', description: 'Expanded website offerings to include booking and online store solutions.' },
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -53,7 +39,7 @@ function About() {
                 Small businesses are the backbone of the Canadian economy, but they're often underserved by technology providers who focus on enterprise clients or sell cookie-cutter solutions.
               </p>
               <p className="text-lg text-neutral-700 mb-6 leading-relaxed">
-                We started {siteConfig.name} to change that. Our mission is simple: provide professional websites, reliable business laptops, and ongoing support — all at prices small businesses can afford, with no large upfront costs.
+                We started {siteConfig.name} to change that. Our mission is simple: provide professional websites, reliable refurbished laptops, and ongoing support — all at prices small businesses can afford, with no large upfront costs.
               </p>
               <p className="text-lg text-neutral-700 mb-6 leading-relaxed">
                 We believe technology should be a tool that helps your business grow, not a burden that holds it back. That's why we handle the technical complexity so you can focus on what you do best: running your business.
@@ -64,7 +50,7 @@ function About() {
 
         <section className="section bg-neutral-50" aria-labelledby="values-heading">
           <div className="container-custom">
-            <h2 id="values-heading" className="section-heading text-center mb-16">Our Values</h2>
+            <h2 id="values-heading" className="section-heading text-center mb-10">Our Values</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value, index) => (
                 <div key={index} className="card p-6 h-full">
@@ -81,7 +67,7 @@ function About() {
 
         <section className="section bg-white" aria-labelledby="services-heading">
           <div className="container-custom">
-            <h2 id="services-heading" className="section-heading text-center mb-16">What We Do</h2>
+            <h2 id="services-heading" className="section-heading text-center mb-10">What We Do</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="card p-8">
                 <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center mb-6 text-primary-600">
@@ -102,8 +88,8 @@ function About() {
                 <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center mb-6 text-primary-600">
                   <Laptop className="w-7 h-7" aria-hidden="true" />
                 </div>
-                <h3 className="text-2xl font-bold text-neutral-900 mb-4">Business Laptops</h3>
-                <p className="text-neutral-600 mb-6">Professionally tested refurbished and open-box business laptops. Every unit is cleaned, tested, and ready for work.</p>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-4">Refurbished Laptops</h3>
+                <p className="text-neutral-600 mb-6">Professionally tested refurbished and open-box laptops. Every unit is cleaned, tested, and ready for work.</p>
                 <ul className="space-y-2" role="list">
                   {laptopCategories.map(cat => (
                     <li key={cat.id} className="flex items-center gap-2 text-sm text-neutral-700">
@@ -113,43 +99,6 @@ function About() {
                   ))}
                 </ul>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section bg-neutral-900" aria-labelledby="team-heading">
-          <div className="container-custom">
-            <h2 id="team-heading" className="section-heading text-white text-center mb-16">Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {team.map((member, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-primary-100 flex items-center justify-center mx-auto mb-4 text-primary-600 font-bold text-2xl">
-                    {member.name.charAt(0)}
-                  </div>
-                  <h3 className="text-white font-semibold mb-1">{member.name}</h3>
-                  <p className="text-primary-200 text-sm">{member.role}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section bg-white" aria-labelledby="journey-heading">
-          <div className="container-custom max-w-3xl">
-            <h2 id="journey-heading" className="section-heading text-center mb-16">Our Journey</h2>
-            <div className="space-y-8">
-              {milestones.map((milestone, index) => (
-                <div key={index} className="flex gap-6 relative">
-                  <div className="flex-shrink-0 w-20 text-right pt-1">
-                    <span className="text-2xl font-bold text-primary-600">{milestone.year}</span>
-                  </div>
-                  <div className="flex-1 border-l-2 border-neutral-200 pl-6 pb-8 relative">
-                    <div className="absolute left-[-10px] top-1 w-4 h-4 rounded-full bg-primary-600 border-4 border-white" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold text-neutral-900 mb-1">{milestone.title}</h3>
-                    <p className="text-neutral-600">{milestone.description}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

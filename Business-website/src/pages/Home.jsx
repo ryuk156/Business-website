@@ -19,7 +19,7 @@ function Home() {
     { icon: Globe, title: 'Professional Websites', description: 'Modern websites designed for small businesses.' },
     { icon: Calendar, title: 'Online Booking', description: 'Let customers book appointments online.' },
     { icon: ShoppingCart, title: 'E-Commerce', description: 'Sell products online with a professional storefront.' },
-    { icon: Laptop, title: 'Business Laptops', description: 'Affordable tested refurbished and open-box business computers.' },
+    { icon: Laptop, title: 'Refurbished Laptops', description: 'Affordable tested refurbished and open-box computers.' },
   ];
 
   const howItWorks = [
@@ -38,7 +38,7 @@ function Home() {
 
   const missionServices = [
     { title: 'Professional websites from $35/month', description: 'Starter, Appointment, and E-Commerce websites with hosting, maintenance, and support included.', icon: Globe },
-    { title: 'Affordable refurbished business laptops', description: 'Tested, cleaned, and ready-to-use business laptops starting at $299+.', icon: Laptop },
+    { title: 'Affordable refurbished laptops', description: 'Tested, cleaned, and ready-to-use laptops starting at $299+.', icon: Laptop },
   ];
 
   const laptopFeatureIconMap = {
@@ -83,7 +83,7 @@ function Home() {
 
         <section className="section bg-neutral-50" aria-labelledby="pricing-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="pricing-heading" className="section-heading">Choose the Website That Fits Your Business</h2>
               <p className="section-subheading">Start small and upgrade as your business grows.</p>
             </div>
@@ -113,7 +113,7 @@ function Home() {
 
         <section className="section bg-neutral-50" aria-labelledby="how-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="how-heading" className="section-heading">How It Works</h2>
               <p className="section-subheading">Get your business online in four simple steps.</p>
             </div>
@@ -124,10 +124,6 @@ function Home() {
                   <div key={index} className="relative flex flex-col lg:flex-row items-start gap-6 animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center text-xl font-bold z-10 lg:mr-4">
                       {step.step}
-                    </div>
-                    <div className="flex-1 lg:w-1/2 lg:pr-8 lg:text-right lg:order-last">
-                      <h3 className="text-xl font-semibold text-neutral-900 mb-2">{step.title}</h3>
-                      <p className="text-neutral-600">{step.description}</p>
                     </div>
                     <div className="flex-1 lg:w-1/2 lg:pl-8">
                       <h3 className="text-xl font-semibold text-neutral-900 mb-2">{step.title}</h3>
@@ -142,8 +138,8 @@ function Home() {
 
         <section className="section bg-white" aria-labelledby="laptops-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 id="laptops-heading" className="section-heading">Reliable Business Laptops Without the Business Price</h2>
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <h2 id="laptops-heading" className="section-heading">Reliable Refurbished Laptops at Great Prices</h2>
               <p className="section-subheading">Professionally tested refurbished and open-box laptops for work, productivity and everyday business use.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -171,7 +167,7 @@ function Home() {
             <p className="text-center text-sm text-neutral-500">Prices vary depending on model, specifications and availability.</p>
             <div className="mt-10 text-center">
               <Link to="/laptops">
-                <Button size="lg">Shop Business Laptops</Button>
+                <Button size="lg">Shop Refurbished Laptops</Button>
               </Link>
             </div>
           </div>
@@ -179,7 +175,7 @@ function Home() {
 
         <section className="section bg-neutral-50" aria-labelledby="laptop-features-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="laptop-features-heading" className="section-heading">Every Laptop Includes</h2>
               <p className="section-subheading">Quality assurance and peace of mind with every purchase.</p>
             </div>
@@ -204,6 +200,9 @@ function Home() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 id="bundle-heading" className="text-3xl sm:text-4xl font-bold text-white mb-6">Your Website and Your Business Computer — All in One Place.</h2>
               <p className="text-primary-100 text-lg mb-10">Need a website and computers for your business? We can provide both.</p>
+              <div className="mb-10 inline-block rounded-lg bg-white px-5 py-3 text-lg font-semibold text-primary-700 shadow-sm">
+                Buy a $299 laptop and get your first month of the $35/month website free.
+              </div>
               
               <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-10">
                 <div className="text-center p-6 bg-primary-700/50 rounded-xl">
@@ -248,7 +247,7 @@ function Home() {
             </div>
             <div className="max-w-2xl mx-auto text-center p-8 bg-primary-50 rounded-2xl">
               <h3 className="text-2xl font-bold text-neutral-900 mb-3">One Technology Partner</h3>
-              <p className="text-neutral-600">Websites, business laptops and more as your business grows.</p>
+              <p className="text-neutral-600">Websites, refurbished laptops and more as your business grows.</p>
             </div>
           </div>
         </section>
@@ -313,7 +312,7 @@ function Home() {
               </Link>
               <Link to="/laptops">
                 <Button variant="outline" size="lg" className="border-white text-white hover:bg-primary-700">
-                  Shop Business Laptops
+                  Shop Refurbished Laptops
                 </Button>
               </Link>
             </div>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, ScrollRestoration } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -19,7 +19,6 @@ import GetStarted from './pages/GetStarted';
 function App() {
   return (
     <BrowserRouter>
-      <ScrollRestoration />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1">

@@ -1,5 +1,5 @@
 function FeatureCard({ icon, title, description, className = '' }) {
-  const isComponent = typeof icon === 'function';
+  const isComponent = typeof icon === 'function' || (icon && typeof icon === 'object');
   const IconComponent = isComponent ? icon : null;
 
   return (

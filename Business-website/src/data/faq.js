@@ -44,7 +44,7 @@ Major redesigns, new functionality and substantial development work may require 
   },
   {
     question: 'Do you sell refurbished laptops?',
-    answer: 'Yes. We offer tested refurbished and open-box business laptops.',
+    answer: 'Yes. We offer tested refurbished and open-box laptops.',
   },
   {
     question: 'Do laptops include a warranty?',

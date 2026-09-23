@@ -65,7 +65,7 @@ function LaptopDetail() {
             <nav className="flex items-center gap-2 text-sm text-neutral-500 mb-8" aria-label="Breadcrumb">
               <Link to="/" className="hover:text-neutral-700">Home</Link>
               <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              <Link to="/laptops" className="hover:text-neutral-700">Business Laptops</Link>
+              <Link to="/laptops" className="hover:text-neutral-700">Refurbished Laptops</Link>
               <ChevronRight className="w-4 h-4" aria-hidden="true" />
               <span className="text-neutral-900 truncate max-w-xs">{laptop.brand} {laptop.model}</span>
             </nav>

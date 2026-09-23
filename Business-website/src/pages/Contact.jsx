@@ -4,11 +4,18 @@ import { siteConfig } from '../config/site';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
+import { submitFormByEmail } from '../utils/email';
 
 function Contact() {
   const handleSubmit = async (data) => {
-    console.log('Form submitted:', data);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await submitFormByEmail('New Web Mechanix contact request', {
+      Name: data.name,
+      'Business name': data.businessName,
+      Email: data.email,
+      Phone: data.phone,
+      Service: data.service,
+      Message: data.message,
+    });
   };
 
   return (

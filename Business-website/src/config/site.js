@@ -1,10 +1,11 @@
 export const siteConfig = {
-  name: 'YOUR COMPANY',
+  name: 'Web Mechanix',
   tagline: 'Technology Made Simple for Small Business.',
-  description: 'Professional business websites from $35/month, appointment websites, e-commerce websites and affordable refurbished business laptops.',
+  description: 'Professional business websites from $35/month, appointment websites, e-commerce websites and affordable refurbished laptops.',
+  deal: 'Buy a $299 business laptop and get your first month of the $35/month website free.',
   url: 'https://yourcompany.ca',
   contact: {
-    email: 'hello@yourcompany.ca',
+    email: 'yashp2928@gmail.com',
     phone: '+1 (555) 000-0000',
     address: 'Toronto, Ontario, Canada',
   },
@@ -16,7 +17,7 @@ export const siteConfig = {
   navigation: {
     main: [
       { label: 'Websites', href: '/websites' },
-      { label: 'Business Laptops', href: '/laptops' },
+      { label: 'Refurbished Laptops', href: '/laptops' },
       { label: 'About', href: '/about' },
       { label: 'FAQ', href: '/faq' },
       { label: 'Contact', href: '/contact' },
@@ -35,7 +36,7 @@ export const siteConfig = {
       { label: 'E-Commerce', href: '/websites/ecommerce' },
     ],
     laptops: [
-      { label: 'Shop Laptops', href: '/laptops' },
+      { label: 'Shop Refurbished Laptops', href: '/laptops' },
       { label: 'Warranty', href: '/laptops#warranty' },
       { label: 'Support', href: '/contact' },
     ],

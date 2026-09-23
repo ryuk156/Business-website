@@ -55,7 +55,7 @@ function Laptops() {
         <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-neutral-50 to-white">
           <div className="container-custom text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 tracking-tight leading-tight mb-6">
-              Business Laptops
+              Refurbished Laptops
             </h1>
             <p className="text-lg sm:text-xl text-neutral-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               Professionally tested refurbished and open-box laptops for work, productivity and everyday business use.
@@ -63,6 +63,9 @@ function Laptops() {
             <p className="text-sm text-neutral-500 flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary-500" aria-hidden="true"></span>
               Starting at $299+ • 90-day warranty • Ready to use
+            </p>
+            <p className="mt-5 inline-block rounded-lg bg-primary-100 px-5 py-3 font-semibold text-primary-800">
+              Buy a $299 laptop and get your first month of the $35/month website free.
             </p>
           </div>
         </section>

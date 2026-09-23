@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import ContactForm from '../components/ContactForm';
+import { submitFormByEmail } from '../utils/email';
 
 function GetStarted() {
   const [searchParams] = useSearchParams();
@@ -48,12 +49,26 @@ function GetStarted() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!e.currentTarget.checkValidity()) {
+      e.currentTarget.reportValidity();
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      console.log('Get Started submission:', { plan: selectedPlan, ...formData });
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await submitFormByEmail('New Web Mechanix website request', {
+        Plan: selectedPlan?.name || formData.selectedPlan,
+        'Business name': formData.businessName,
+        'Contact name': formData.contactName,
+        Email: formData.email,
+        Phone: formData.phone,
+        'Business type': formData.businessType,
+        'Existing website': formData.hasWebsite,
+        Domain: formData.hasDomain,
+        'Additional information': formData.additionalInfo,
+      });
       setSubmitStatus('success');
       setFormData({
         businessName: '',
