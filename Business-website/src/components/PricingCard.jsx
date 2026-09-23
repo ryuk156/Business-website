@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { Check, ShoppingCart } from 'lucide-react';
 import { lucideIcons } from '../utils/icons';
 import Button from './Button';
+import { useCart } from '../context/useCart';
 
 function PricingCard({ plan, className = '' }) {
   const CheckIcon = lucideIcons.Check;
+  const { addItem } = useCart();
 
   return (
     <article className={`relative card overflow-visible flex flex-col ${plan.popular ? 'ring-2 ring-primary-500 shadow-lg' : ''} ${className}`}>
@@ -36,11 +37,15 @@ function PricingCard({ plan, className = '' }) {
           ))}
         </ul>
 
-        <Link to={plan.ctaLink}>
-          <Button variant={plan.popular ? 'primary' : 'outline'} className="w-full" size="lg">
-            {plan.cta}
-          </Button>
-        </Link>
+        <Button
+          variant={plan.popular ? 'primary' : 'outline'}
+          size="lg"
+          className="w-full"
+          onClick={() => addItem({ id: plan.id, type: 'subscription', name: plan.name, price: plan.price, period: plan.period })}
+        >
+          <ShoppingCart className="mr-2 h-5 w-5" aria-hidden="true" />
+          Add Plan to Cart
+        </Button>
       </div>
 
       {plan.recommendedFor && (

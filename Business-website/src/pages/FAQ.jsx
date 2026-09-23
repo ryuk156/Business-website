@@ -1,7 +1,6 @@
 import { siteConfig } from '../config/site';
 import { faqs } from '../data/faq';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import FAQAccordion from '../components/FAQAccordion';
 
 function FAQ() {
@@ -38,7 +37,6 @@ function FAQ() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

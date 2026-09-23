@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
-import { ExternalLink, Check } from 'lucide-react';
-import { lucideIcons } from '../utils/icons';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/useCart';
 
 function LaptopCard({ laptop }) {
+  const navigate = useNavigate();
+  const { addItem } = useCart();
   const savings = laptop.originalPrice - laptop.price;
   const savingsPercent = Math.round((savings / laptop.originalPrice) * 100);
 
@@ -25,12 +27,24 @@ function LaptopCard({ laptop }) {
   };
 
   return (
-    <article className="card flex flex-col overflow-hidden">
+    <article
+      className="card group flex cursor-pointer flex-col overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+      role="link"
+      tabIndex={0}
+      onClick={() => navigate(`/laptops/${laptop.id}`)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          navigate(`/laptops/${laptop.id}`);
+        }
+      }}
+      aria-label={`View details for ${laptop.brand} ${laptop.model}`}
+    >
       <div className="relative aspect-video bg-neutral-100 overflow-hidden">
         <img
           src={laptop.image}
           alt={`${laptop.brand} ${laptop.model}`}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
         <div className="absolute top-3 left-3 right-3 flex justify-between">
@@ -82,12 +96,18 @@ function LaptopCard({ laptop }) {
               <span className="ml-2 text-sm text-neutral-400 line-through">${laptop.originalPrice.toFixed(2)}</span>
             )}
           </div>
-          <Link
-            to={`/laptops/${laptop.id}`}
-            className="btn-primary text-sm px-4 py-2"
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              addItem({ id: laptop.id, type: 'product', name: `${laptop.brand} ${laptop.model}`, price: laptop.price, image: laptop.image });
+            }}
+            className="group/cart inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:from-primary-700 hover:to-primary-600 hover:shadow-lg hover:shadow-primary-500/35 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           >
-            View Details
-          </Link>
+            <ShoppingCart className="h-4 w-4 transition-transform duration-300 group-hover/cart:scale-110" aria-hidden="true" />
+            Add to Cart
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cart:translate-x-0.5" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </article>

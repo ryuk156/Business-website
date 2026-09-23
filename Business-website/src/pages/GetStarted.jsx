@@ -5,7 +5,6 @@ import { lucideIcons } from '../utils/icons';
 import { siteConfig } from '../config/site';
 import { pricingPlans } from '../data/pricing';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Button from '../components/Button';
 import ContactForm from '../components/ContactForm';
 import { submitFormByEmail } from '../utils/email';
@@ -109,7 +108,7 @@ function GetStarted() {
         {!showForm ? (
           <section className="section bg-white" aria-labelledby="plans-heading">
             <div className="container-custom">
-              <h2 id="plans-heading" className="section-heading text-center mb-12">Choose Your Website Plan</h2>
+              <h2 id="plans-heading" className="section-heading text-center mb-8">Choose Your Website Plan</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 {pricingPlans.map((plan, index) => (
                   <div
@@ -374,7 +373,6 @@ function GetStarted() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

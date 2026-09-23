@@ -1,18 +1,19 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Globe, Laptop, Users, Heart, Target, Zap, CheckCircle } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import { pricingPlans, laptopCategories } from '../data/pricing';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Button from '../components/Button';
 
 function About() {
   const values = [
-    { icon: Heart, title: 'Small Business First', description: 'Every decision we make starts with the needs of small business owners.' },
-    { icon: Target, title: 'Simple & Transparent', description: 'Clear pricing, no hidden fees, no long-term contracts. Just straightforward technology.' },
-    { icon: Zap, title: 'Quality Without Compromise', description: 'Professional websites and tested laptops that meet business-grade standards.' },
-    { icon: Users, title: 'Long-term Partnership', description: 'We\'re not just a vendor. We\'re your technology partner as you grow.' },
+    { icon: Heart, title: 'Small Business First', description: 'Every decision we make starts with the needs of small business owners.', detail: 'You get practical recommendations built around your goals, budget, and day-to-day work — not a one-size-fits-all package.' },
+    { icon: Target, title: 'Simple & Transparent', description: 'Clear pricing, no hidden fees, no long-term contracts. Just straightforward technology.', detail: 'We explain what you are getting, what it costs, and what happens next so you can make confident decisions.' },
+    { icon: Zap, title: 'Quality Without Compromise', description: 'Professional websites and tested laptops that meet business-grade standards.', detail: 'Every project and device is reviewed with care so your technology is dependable from day one.' },
+    { icon: Users, title: 'Long-term Partnership', description: 'We\'re not just a vendor. We\'re your technology partner as you grow.', detail: 'As your needs change, we stay available to improve, maintain, and expand the tools your business relies on.' },
   ];
+  const [selectedValue, setSelectedValue] = useState(0);
 
   return (
     <div className="min-h-screen bg-white">
@@ -33,7 +34,7 @@ function About() {
 
         <section className="section bg-white" aria-labelledby="mission-heading">
           <div className="container-custom max-w-4xl">
-            <h2 id="mission-heading" className="section-heading text-center mb-12">Our Mission</h2>
+            <h2 id="mission-heading" className="section-heading text-center mb-8">Our Mission</h2>
             <div className="prose prose-neutral max-w-none">
               <p className="text-lg text-neutral-700 mb-6 leading-relaxed">
                 Small businesses are the backbone of the Canadian economy, but they're often underserved by technology providers who focus on enterprise clients or sell cookie-cutter solutions.
@@ -51,16 +52,39 @@ function About() {
         <section className="section bg-neutral-50" aria-labelledby="values-heading">
           <div className="container-custom">
             <h2 id="values-heading" className="section-heading text-center mb-10">Our Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" role="tablist" aria-label="Our values">
               {values.map((value, index) => (
-                <div key={index} className="card p-6 h-full">
+                <button
+                  key={index}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedValue === index}
+                  aria-controls="value-panel"
+                  onClick={() => setSelectedValue(index)}
+                  className={`card p-6 h-full text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+                    selectedValue === index ? 'border-primary-500 shadow-lg -translate-y-1' : 'hover:-translate-y-1'
+                  }`}
+                >
                   <div className="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4 text-primary-600">
                     <value.icon className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-semibold text-neutral-900 mb-2">{value.title}</h3>
                   <p className="text-neutral-600">{value.description}</p>
-                </div>
+                </button>
               ))}
+            </div>
+            <div
+              id="value-panel"
+              role="tabpanel"
+              aria-live="polite"
+              className="mt-8 mx-auto max-w-3xl rounded-xl border border-primary-100 bg-primary-50 p-6 text-center animate-in"
+            >
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">
+                Why it matters
+              </p>
+              <p className="mt-2 text-lg leading-relaxed text-neutral-700">
+                {values[selectedValue].detail}
+              </p>
             </div>
           </div>
         </section>
@@ -123,7 +147,6 @@ function About() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

@@ -2,7 +2,6 @@ import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { lucideIcons } from '../utils/icons';
 import { siteConfig } from '../config/site';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
 import { submitFormByEmail } from '../utils/email';
 
@@ -95,7 +94,7 @@ function Contact() {
 
         <section className="section bg-neutral-50" aria-labelledby="faq-heading">
           <div className="container-custom max-w-3xl">
-            <h2 id="faq-heading" className="section-heading text-center mb-12">Quick Answers</h2>
+            <h2 id="faq-heading" className="section-heading text-center mb-8">Quick Answers</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { q: 'How fast do you respond?', a: 'We typically respond to all inquiries within 1 business day during regular business hours.' },
@@ -116,7 +115,6 @@ function Contact() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { lucideIcons } from '../utils/icons';
 import { siteConfig } from '../config/site';
 import { pricingPlans } from '../data/pricing';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Button from '../components/Button';
 
 function Starter() {
@@ -47,7 +46,7 @@ function Starter() {
 
         <section className="section bg-white" aria-labelledby="features-heading">
           <div className="container-custom max-w-4xl">
-            <h2 id="features-heading" className="section-heading mb-12">What's Included</h2>
+            <h2 id="features-heading" className="section-heading mb-8">What's Included</h2>
             <div className="space-y-4">
               {plan.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-4 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors">
@@ -66,7 +65,7 @@ function Starter() {
 
         <section className="section bg-neutral-50" aria-labelledby="perfect-heading">
           <div className="container-custom max-w-4xl">
-            <h2 id="perfect-heading" className="section-heading text-center mb-12">Perfect For</h2>
+            <h2 id="perfect-heading" className="section-heading text-center mb-8">Perfect For</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {plan.recommendedFor.map((business, index) => (
                 <div key={index} className="p-4 bg-white rounded-lg border border-neutral-200 text-center hover:border-primary-300 transition-colors">
@@ -79,7 +78,7 @@ function Starter() {
 
         <section className="section bg-white" aria-labelledby="process-heading">
           <div className="container-custom max-w-4xl">
-            <h2 id="process-heading" className="section-heading text-center mb-12">How It Works</h2>
+            <h2 id="process-heading" className="section-heading text-center mb-8">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
                 { step: '01', title: 'Choose Starter Plan', description: 'Select the Starter Website at $35/month.' },
@@ -113,7 +112,6 @@ function Starter() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

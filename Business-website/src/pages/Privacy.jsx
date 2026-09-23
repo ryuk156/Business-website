@@ -1,6 +1,5 @@
 import { siteConfig } from '../config/site';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 function Privacy() {
   const lastUpdated = 'January 1, 2025';
@@ -110,7 +109,6 @@ function Privacy() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

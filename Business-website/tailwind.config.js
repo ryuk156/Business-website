@@ -44,6 +44,7 @@ export default {
         'fade-in': 'fadeIn 0.5s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.3s ease-out',
+        'float-slow': 'float 8s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -57,6 +58,10 @@ export default {
         slideDown: {
           '0%': { opacity: '0', transform: 'translateY(-10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) scale(1)' },
+          '50%': { transform: 'translateY(-12px) scale(1.03)' },
         },
       },
     },

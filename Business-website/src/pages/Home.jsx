@@ -1,17 +1,14 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Globe, Calendar, ShoppingCart, Laptop, Lock, Settings, Users, Headphones, Monitor, Cpu, HardDrive, MemoryStick, Battery, CheckCheck, Sparkles, Zap, Shield } from 'lucide-react';
+import { ArrowRight, CheckCircle, Globe, Calendar, ShoppingCart, Laptop, Lock, Settings, Users, Headphones } from 'lucide-react';
 import { siteConfig } from '../config/site';
-import { pricingPlans, laptopCategories, laptopFeatures } from '../data/pricing';
+import { pricingPlans, laptopCategories } from '../data/pricing';
 import { testimonials } from '../data/testimonials';
-import { faqs } from '../data/faq';
 
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
 import PricingCard from '../components/PricingCard';
 import TestimonialCard from '../components/TestimonialCard';
-import FAQAccordion from '../components/FAQAccordion';
 import Button from '../components/Button';
 
 function Home() {
@@ -36,23 +33,6 @@ function Home() {
     { icon: Headphones, title: 'Ongoing Support', description: 'We\'re available after your website or laptop is delivered.' },
   ];
 
-  const missionServices = [
-    { title: 'Professional websites from $35/month', description: 'Starter, Appointment, and E-Commerce websites with hosting, maintenance, and support included.', icon: Globe },
-    { title: 'Affordable refurbished laptops', description: 'Tested, cleaned, and ready-to-use laptops starting at $299+.', icon: Laptop },
-  ];
-
-  const laptopFeatureIconMap = {
-    'Windows 11': Monitor,
-    'Business-class hardware': Cpu,
-    'SSD storage': HardDrive,
-    'RAM upgrade options': MemoryStick,
-    'Battery health testing': Battery,
-    'Hardware testing': CheckCheck,
-    'Professional cleaning': Sparkles,
-    'Ready-to-use setup': Zap,
-    'Warranty options': Shield,
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -62,7 +42,7 @@ function Home() {
 
         <section className="section bg-white" aria-labelledby="trust-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="trust-heading" className="section-heading">Everything Your Business Needs to Get Online</h2>
               <p className="section-subheading">Four core services to help your business succeed online and offline.</p>
             </div>
@@ -81,13 +61,23 @@ function Home() {
           </div>
         </section>
 
-        <section className="section bg-neutral-50" aria-labelledby="pricing-heading">
+        <section className="py-8 sm:py-10 bg-neutral-50" aria-labelledby="pricing-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 id="pricing-heading" className="section-heading">Choose the Website That Fits Your Business</h2>
-              <p className="section-subheading">Start small and upgrade as your business grows.</p>
+            <div className="mb-7 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-primary-600">Website plans</p>
+                <h2 id="pricing-heading" className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">
+                  Choose the right fit for your business
+                </h2>
+              </div>
+              <p className="max-w-sm text-sm leading-relaxed text-neutral-600 sm:pb-1 sm:text-right">
+                Start small and upgrade as your business grows. Not sure which plan fits?{' '}
+                <Link to="/get-started" className="font-medium text-primary-600 hover:text-primary-700">
+                  We can help.
+                </Link>
+              </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {pricingPlans.map((plan, index) => (
                 <PricingCard key={plan.id} plan={plan} className="animate-slide-up" style={{ animationDelay: `${index * 100}ms` }} />
               ))}
@@ -111,24 +101,26 @@ function Home() {
           </div>
         </section>
 
-        <section className="section bg-neutral-50" aria-labelledby="how-heading">
+        <section className="py-8 sm:py-10 bg-neutral-50" aria-labelledby="how-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="text-center max-w-3xl mx-auto mb-8">
               <h2 id="how-heading" className="section-heading">How It Works</h2>
               <p className="section-subheading">Get your business online in four simple steps.</p>
             </div>
             <div className="relative">
-              <div className="hidden lg:block absolute top-14 left-1/2 transform -translate-x-1/2 w-px h-[calc(100%-3.5rem)] bg-neutral-200" aria-hidden="true" />
-              <div className="space-y-12 lg:space-y-0">
+              <div className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-primary-200" aria-hidden="true" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                 {howItWorks.map((step, index) => (
-                  <div key={index} className="relative flex flex-col lg:flex-row items-start gap-6 animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center text-xl font-bold z-10 lg:mr-4">
+                  <div
+                    key={index}
+                    className="relative z-10 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md animate-slide-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600 text-lg font-bold text-white ring-8 ring-neutral-50">
                       {step.step}
                     </div>
-                    <div className="flex-1 lg:w-1/2 lg:pl-8">
-                      <h3 className="text-xl font-semibold text-neutral-900 mb-2">{step.title}</h3>
-                      <p className="text-neutral-600">{step.description}</p>
-                    </div>
+                    <h3 className="mt-4 text-lg font-semibold text-neutral-900">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-neutral-600">{step.description}</p>
                   </div>
                 ))}
               </div>
@@ -138,11 +130,11 @@ function Home() {
 
         <section className="section bg-white" aria-labelledby="laptops-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="text-center max-w-3xl mx-auto mb-7">
               <h2 id="laptops-heading" className="section-heading">Reliable Refurbished Laptops at Great Prices</h2>
               <p className="section-subheading">Professionally tested refurbished and open-box laptops for work, productivity and everyday business use.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {laptopCategories.map((category, index) => (
                 <div key={category.id} className="card p-6 h-full animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
                   <h3 className="text-xl font-semibold text-neutral-900 mb-2">{category.name}</h3>
@@ -173,28 +165,6 @@ function Home() {
           </div>
         </section>
 
-        <section className="section bg-neutral-50" aria-labelledby="laptop-features-heading">
-          <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 id="laptop-features-heading" className="section-heading">Every Laptop Includes</h2>
-              <p className="section-subheading">Quality assurance and peace of mind with every purchase.</p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-              {laptopFeatures.map((feature, index) => {
-                const IconComponent = laptopFeatureIconMap[feature.name] || Monitor;
-                return (
-                  <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-lg border border-neutral-200 animate-slide-up" style={{ animationDelay: `${index * 50}ms` }}>
-                    <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0 text-primary-600">
-                      <IconComponent className="w-5 h-5" aria-hidden="true" />
-                    </div>
-                    <span className="font-medium text-neutral-900 mt-1">{feature.name}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
         <section className="section bg-primary-600" aria-labelledby="bundle-heading">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
@@ -204,7 +174,7 @@ function Home() {
                 Buy a $299 laptop and get your first month of the $35/month website free.
               </div>
               
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-10">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
                 <div className="text-center p-6 bg-primary-700/50 rounded-xl">
                   <p className="text-primary-200 text-sm font-medium mb-1">Website</p>
                   <p className="text-3xl font-bold text-white">Starting at $35/month</p>
@@ -229,11 +199,11 @@ function Home() {
 
         <section className="section bg-white" aria-labelledby="why-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="why-heading" className="section-heading">Why Choose {siteConfig.name}?</h2>
               <p className="section-subheading">We make technology simple, affordable, and reliable for small businesses.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
               {whyChooseUs.map((item, index) => (
                 <FeatureCard
                   key={index}
@@ -245,58 +215,20 @@ function Home() {
                 />
               ))}
             </div>
-            <div className="max-w-2xl mx-auto text-center p-8 bg-primary-50 rounded-2xl">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">One Technology Partner</h3>
-              <p className="text-neutral-600">Websites, refurbished laptops and more as your business grows.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section bg-neutral-900" aria-labelledby="mission-heading">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 id="mission-heading" className="text-3xl sm:text-4xl font-bold text-white mb-6">Technology Made Simple for Small Business.</h2>
-              <p className="text-primary-100 text-lg mb-10 max-w-2xl mx-auto">We make professional websites and reliable business technology accessible without expensive upfront costs.</p>
-              <p className="text-primary-200 mb-8">We start with two core services:</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
-                {missionServices.map((service, index) => (
-                  <div key={index} className="flex items-center gap-3 p-4 bg-neutral-800/50 rounded-xl text-left min-w-[280px]">
-                    <div className="w-10 h-10 rounded-lg bg-primary-600 flex items-center justify-center flex-shrink-0 text-white">
-                      <service.icon className="w-5 h-5" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white">{service.title}</p>
-                      <p className="text-primary-200 text-sm">{service.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-primary-200 text-lg">As your business grows, we can grow with you.</p>
-            </div>
           </div>
         </section>
 
         <section className="section bg-white" aria-labelledby="testimonials-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="testimonials-heading" className="section-heading">What Our Customers Say</h2>
-              <p className="section-subheading">Placeholder testimonials — replace with real customer feedback.</p>
+              <p className="section-subheading">Reviews from our Upwork clients.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
                 <TestimonialCard key={testimonial.id} testimonial={testimonial} className="animate-slide-up" style={{ animationDelay: `${index * 100}ms` }} />
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="section bg-neutral-50" aria-labelledby="faq-heading">
-          <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 id="faq-heading" className="section-heading">Frequently Asked Questions</h2>
-              <p className="section-subheading">Quick answers to common questions.</p>
-            </div>
-            <FAQAccordion faqs={faqs} />
           </div>
         </section>
 
@@ -320,7 +252,6 @@ function Home() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

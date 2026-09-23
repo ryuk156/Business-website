@@ -7,7 +7,7 @@ function Footer() {
 
   return (
     <footer className="bg-neutral-900 text-neutral-300" role="contentinfo">
-      <div className="container-custom py-16 lg:py-24">
+      <div className="container-custom py-10 lg:py-14">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
           <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="inline-block mb-6" aria-label={`${siteConfig.name} - Home`}>
@@ -72,7 +72,7 @@ function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 lg:mt-16 pt-8 border-t border-neutral-800">
+        <div className="mt-8 lg:mt-10 pt-6 border-t border-neutral-800">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="flex flex-wrap items-center gap-6 text-sm text-neutral-500">
               <div className="flex items-center gap-2">

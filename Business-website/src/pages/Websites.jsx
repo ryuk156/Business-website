@@ -3,7 +3,6 @@ import { Globe, Calendar, ShoppingCart } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import { pricingPlans } from '../data/pricing';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Button from '../components/Button';
 import PricingCard from '../components/PricingCard';
 
@@ -31,7 +30,7 @@ function Websites() {
 
         <section className="section bg-white" aria-labelledby="compare-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="compare-heading" className="section-heading">Compare Website Plans</h2>
               <p className="section-subheading">Choose the plan that matches your business needs.</p>
             </div>
@@ -45,7 +44,7 @@ function Websites() {
 
         <section className="section bg-neutral-50" aria-labelledby="details-heading">
           <div className="container-custom">
-            <h2 id="details-heading" className="section-heading text-center mb-16">Explore Each Plan</h2>
+            <h2 id="details-heading" className="section-heading text-center mb-10">Explore Each Plan</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {pricingPlans.map((plan) => {
                 const IconComponent = plan.id === 'starter' ? Globe : plan.id === 'appointment' ? Calendar : ShoppingCart;
@@ -109,7 +108,6 @@ function Websites() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

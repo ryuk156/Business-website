@@ -15,14 +15,17 @@ import FAQ from './pages/FAQ';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import GetStarted from './pages/GetStarted';
+import Cart from './pages/Cart';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
+    <CartProvider>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/websites" element={<Websites />} />
             <Route path="/websites/starter" element={<Starter />} />
@@ -35,12 +38,14 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="/get-started" element={<GetStarted />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+              <Route path="/get-started" element={<GetStarted />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

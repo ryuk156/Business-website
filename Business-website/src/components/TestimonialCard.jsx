@@ -17,7 +17,7 @@ function TestimonialCard({ testimonial }) {
           </div>
           <div>
             <p className="font-medium text-neutral-900">{testimonial.author}</p>
-            <p className="text-sm text-neutral-500">{testimonial.business}</p>
+            <p className="text-sm text-neutral-500">{testimonial.business} · {testimonial.source}</p>
           </div>
         </div>
       </footer>

@@ -51,11 +51,15 @@
   }
 
   .card {
-    @apply bg-white rounded-xl border border-neutral-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden;
+    @apply bg-white rounded-xl border border-neutral-200 shadow-sm transition-all duration-300 overflow-hidden;
+  }
+
+  .card:hover {
+    @apply -translate-y-1 shadow-lg;
   }
 
   .section {
-    @apply py-10 sm:py-14 lg:py-20;
+    @apply py-7 sm:py-10 lg:py-14;
   }
 
   .section-heading {
@@ -114,5 +118,19 @@
 
   .delay-400 {
     animation-delay: 400ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { siteConfig } from '../config/site';
 import { laptops, brands, categories, conditions } from '../data/laptops';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import LaptopCard from '../components/LaptopCard';
 import Button from '../components/Button';
 
@@ -201,7 +200,7 @@ function Laptops() {
             </div>
 
             {filteredLaptops.length === 0 ? (
-              <div className="text-center py-20">
+              <div className="text-center py-12">
                 <Search className="w-16 h-16 text-neutral-300 mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-xl font-semibold text-neutral-900 mb-2">No laptops found</h3>
                 <p className="text-neutral-600 mb-6">Try adjusting your filters or search terms.</p>
@@ -229,7 +228,7 @@ function Laptops() {
 
         <section className="section bg-neutral-50" id="warranty" aria-labelledby="warranty-heading">
           <div className="container-custom">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 id="warranty-heading" className="section-heading">Warranty & Support</h2>
               <p className="section-subheading">Peace of mind with every purchase.</p>
             </div>
@@ -260,7 +259,6 @@ function Laptops() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

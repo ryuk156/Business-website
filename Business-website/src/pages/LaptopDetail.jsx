@@ -5,26 +5,26 @@ import { lucideIcons } from '../utils/icons';
 import { siteConfig } from '../config/site';
 import { laptops } from '../data/laptops';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Button from '../components/Button';
+import { useCart } from '../context/useCart';
 
 function LaptopDetail() {
   const { id } = useParams();
   const laptop = laptops.find(l => l.id === parseInt(id));
   const [currentImage, setCurrentImage] = useState(0);
+  const { addItem } = useCart();
 
   if (!laptop) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <Navbar />
-        <main className="container-custom py-20 text-center">
+        <main className="container-custom py-12 text-center">
           <h1 className="text-3xl font-bold text-neutral-900 mb-4">Laptop Not Found</h1>
           <p className="text-neutral-600 mb-8">The laptop you're looking for doesn't exist or has been sold.</p>
           <Link to="/laptops">
             <Button>Back to All Laptops</Button>
           </Link>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -48,11 +48,6 @@ function LaptopDetail() {
     'Refurbished': 'bg-amber-100 text-amber-800',
     'Open Box': 'bg-green-100 text-green-800',
     'New': 'bg-blue-100 text-blue-800',
-  };
-
-  const handleInquire = async () => {
-    // Placeholder for inquiry/purchase flow
-    alert('Inquiry functionality would integrate with your CRM or email system.');
   };
 
   return (
@@ -141,12 +136,10 @@ function LaptopDetail() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Button onClick={handleInquire} size="lg" className="flex-1">
-                    Inquire / Purchase
+                  <Button onClick={() => addItem({ id: laptop.id, type: 'product', name: `${laptop.brand} ${laptop.model}`, price: laptop.price, image: laptop.image })} size="lg" className="flex-1">
+                    Add to Cart
                   </Button>
-                  <Button variant="outline" onClick={handleInquire} size="lg" className="flex-1">
-                    Request More Info
-                  </Button>
+                  <Link to="/contact" className="flex-1"><Button variant="outline" size="lg" className="w-full">Request More Info</Button></Link>
                 </div>
 
                 <div className="border-t border-neutral-200 pt-6">
@@ -173,7 +166,7 @@ function LaptopDetail() {
 
         <section className="section bg-neutral-50" aria-labelledby="specs-heading">
           <div className="container-custom">
-            <h2 id="specs-heading" className="section-heading mb-12">Full Specifications</h2>
+            <h2 id="specs-heading" className="section-heading mb-8">Full Specifications</h2>
             <div className="max-w-3xl mx-auto">
               <div className="card overflow-hidden">
                 <div className="grid grid-cols-1 md:grid-cols-2">
@@ -197,7 +190,7 @@ function LaptopDetail() {
 
         <section className="section bg-white" aria-labelledby="similar-heading">
           <div className="container-custom">
-            <h2 id="similar-heading" className="section-heading text-center mb-12">You Might Also Like</h2>
+            <h2 id="similar-heading" className="section-heading text-center mb-8">You Might Also Like</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {laptops
                 .filter(l => l.id !== laptop.id && l.category === laptop.category)
@@ -258,7 +251,6 @@ function LaptopDetail() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }
