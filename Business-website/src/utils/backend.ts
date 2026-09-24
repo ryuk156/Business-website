@@ -93,7 +93,11 @@ export async function createStripeCheckoutSession(request: StripeCheckoutInput) 
     body: request,
   });
 
-  if (error) throw error;
+  if (error) {
+    const response = error.context instanceof Response ? error.context : null;
+    const details = response ? await response.json().catch(() => null) : null;
+    throw new Error(details?.error || error.message);
+  }
   if (!data?.url) throw new Error('Stripe did not return a checkout URL.');
   return data.url as string;
 }
