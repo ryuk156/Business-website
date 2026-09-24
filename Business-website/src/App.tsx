@@ -20,11 +20,16 @@ import { CartProvider } from './context/CartContext';
 import CheckoutInfo from './pages/CheckoutInfo';
 import Checkout from './pages/Checkout';
 import CheckoutSuccess from './pages/CheckoutSuccess';
+import Auth from './pages/Auth';
+import Account from './pages/Account';
+import Admin from './pages/Admin';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
+        <AuthProvider>
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main className="flex-1">
@@ -46,10 +51,14 @@ function App() {
               <Route path="/checkout-info" element={<CheckoutInfo />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </main>
           <Footer />
         </div>
+        </AuthProvider>
       </BrowserRouter>
     </CartProvider>
   );

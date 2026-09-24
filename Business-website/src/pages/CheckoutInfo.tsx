@@ -50,8 +50,8 @@ function CheckoutInfo() {
   });
 
   useEffect(() => {
-    if (!hasWebsitePlan) navigate('/cart', { replace: true });
-  }, [hasWebsitePlan, navigate]);
+    if (items.length === 0) navigate('/cart', { replace: true });
+  }, [items.length, navigate]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -80,7 +80,7 @@ function CheckoutInfo() {
     }
   };
 
-  if (!hasWebsitePlan) return null;
+  if (items.length === 0) return null;
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -94,8 +94,8 @@ function CheckoutInfo() {
               </div>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wider text-primary-600">Step 1 of 2</p>
-                <h1 className="mt-1 text-3xl font-bold text-neutral-900 sm:text-4xl">Tell us about your business</h1>
-                <p className="mt-3 text-neutral-600">These details help us understand what you need before we prepare your website and checkout.</p>
+                <h1 className="mt-1 text-3xl font-bold text-neutral-900 sm:text-4xl">{hasWebsitePlan ? 'Tell us about your business' : 'Your checkout details'}</h1>
+                <p className="mt-3 text-neutral-600">{hasWebsitePlan ? 'These details help us understand what you need before we prepare your website and checkout.' : 'Enter your contact details so we can process your laptop order. No account is required.'}</p>
               </div>
             </div>
           </div>
@@ -111,7 +111,8 @@ function CheckoutInfo() {
               </div>
             </section>
 
-            <section aria-labelledby="website-heading">
+            {hasWebsitePlan && (
+              <section aria-labelledby="website-heading">
               <h2 id="website-heading" className="text-lg font-semibold text-neutral-900">Your website project</h2>
               <div className="mt-4 grid gap-5 sm:grid-cols-2">
                 <Field id="businessType" label="What type of business do you run?" value={formData.businessType} onChange={handleChange} placeholder="Landscaping, consulting, salon..." required />
@@ -128,11 +129,12 @@ function CheckoutInfo() {
                 <label htmlFor="additionalInfo" className="label">Anything else we should know?</label>
                 <textarea id="additionalInfo" name="additionalInfo" value={formData.additionalInfo} onChange={handleChange} className="input-field min-h-24 resize-y" placeholder="Tell us about your ideal customers, style, timeline, or questions..." />
               </div>
-            </section>
+              </section>
+            )}
 
             <div className="flex items-start gap-3 rounded-lg bg-primary-50 p-4 text-sm text-primary-900">
               <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-600" aria-hidden="true" />
-              <p>Your answers are saved securely when you review the order and can be used to prepare your project before payment.</p>
+              <p>{hasWebsitePlan ? 'Your answers are saved securely when you review the order and can be used to prepare your project before payment.' : 'Your contact details are saved securely and used only to fulfill your order.'}</p>
             </div>
             {saveError && (
               <p className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700" role="alert">

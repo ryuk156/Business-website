@@ -48,6 +48,7 @@ export async function saveCheckoutRequest(request: CheckoutRequest) {
     cart_items: request.cartItems,
     monthly_total: request.monthlyTotal,
     one_time_total: request.oneTimeTotal,
+    customer_id: (await requireSupabase().auth.getUser()).data.user?.id || null,
   });
 
   if (error) throw error;

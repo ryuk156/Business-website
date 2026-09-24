@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Sparkles, ShoppingCart } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import Button from './Button';
+import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/useCart';
 
 function Navbar() {
@@ -10,6 +11,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
   const dropdownRef = useRef(null);
   const { itemCount } = useCart();
 
@@ -103,8 +105,8 @@ function Navbar() {
               </Link>
             ))}
             
-            <Link to={cta.href} className="ml-4">
-              <Button size="sm">{cta.label}</Button>
+            <Link to={user ? '/account' : cta.href} className="ml-4">
+              <Button size="sm">{user ? 'Account' : cta.label}</Button>
             </Link>
             <Link to="/cart" className="relative rounded-lg p-2 text-neutral-600 transition-colors hover:bg-primary-50 hover:text-primary-700" aria-label={`Cart with ${itemCount} item${itemCount === 1 ? '' : 's'}`}>
               <ShoppingCart className="h-5 w-5" aria-hidden="true" />
@@ -155,8 +157,8 @@ function Navbar() {
             ))}
             
             <div className="pt-4 border-t border-neutral-200">
-              <Link to={cta.href} className="block" onClick={() => setIsOpen(false)}>
-                <Button className="w-full">{cta.label}</Button>
+              <Link to={user ? '/account' : cta.href} className="block" onClick={() => setIsOpen(false)}>
+                <Button className="w-full">{user ? 'Account' : cta.label}</Button>
               </Link>
             </div>
           </div>
